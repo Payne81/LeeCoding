@@ -2,6 +2,8 @@
 
 C\C++的多线程编程常用库. (虽然C11有线程库，but还是有很多老古董不用🤡，C++11后有thread库).
 
+本文档参考https://www.cs.cmu.edu/afs/cs/academic/class/15492-f07/www/pthreads.html.
+
 ## 基础
 
 - 线程操作包括线程创建，终止，同步(link,block)，调度，数据管理和进程间通信. 
@@ -38,3 +40,107 @@ C\C++的多线程编程常用库. (虽然C11有线程库，but还是有很多老
 - 条件变量(wait && signal)
 
 ### Mutex
+
+```c
+   pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
+   pthread_mutex_lock( &mutex1 );
+   counter++;
+   pthread_mutex_unlock( &mutex1 );
+```
+
+### Join
+
+```c
+pthread_create( &thread_id, NULL, thread_function, NULL );
+// 等待thread_id线程结束
+pthread_join( thread_id, NULL); 
+```
+
+### 条件变量(Wait&Signal)
+
+```C
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+
+pthread_mutex_t count_mutex     = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t condition_mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t  condition_cond  = PTHREAD_COND_INITIALIZER;
+
+void *functionCount1();
+void *functionCount2();
+int  count = 0;
+#define COUNT_DONE  10
+#define COUNT_HALT1  3
+#define COUNT_HALT2  6
+
+main()
+{
+   pthread_t thread1, thread2;
+
+   pthread_create( &thread1, NULL, &functionCount1, NULL);
+   pthread_create( &thread2, NULL, &functionCount2, NULL);
+   pthread_join( thread1, NULL);
+   pthread_join( thread2, NULL);
+
+   exit(0);
+}
+void *functionCount1()
+{
+   for(;;)
+   {
+      pthread_mutex_lock( &condition_mutex );
+      while( count >= COUNT_HALT1 && count <= COUNT_HALT2 )
+      {
+         pthread_cond_wait( &condition_cond, &condition_mutex );
+      }
+      pthread_mutex_unlock( &condition_mutex );
+
+      pthread_mutex_lock( &count_mutex );
+      count++;
+      printf("Counter value functionCount1: %d\n",count);
+      pthread_mutex_unlock( &count_mutex );
+
+      if(count >= COUNT_DONE) return(NULL);
+    }
+}
+void *functionCount2()
+{
+    for(;;)
+    {
+       pthread_mutex_lock( &condition_mutex );
+       if( count < COUNT_HALT1 || count > COUNT_HALT2 )
+       {
+          pthread_cond_signal( &condition_cond );
+       }
+       pthread_mutex_unlock( &condition_mutex );
+
+       pthread_mutex_lock( &count_mutex );
+       count++;
+       printf("Counter value functionCount2: %d\n",count);
+       pthread_mutex_unlock( &count_mutex );
+
+       if(count >= COUNT_DONE) return(NULL);
+    }
+}
+```
+
+输出(除了count=3到6时为线程2，其他都是不确定的):
+
+```c
+Counter value functionCount1: 1
+Counter value functionCount1: 2
+Counter value functionCount1: 3
+Counter value functionCount2: 4
+Counter value functionCount2: 5
+Counter value functionCount2: 6
+Counter value functionCount2: 7
+Counter value functionCount1: 8
+Counter value functionCount1: 9
+Counter value functionCount1: 10
+Counter value functionCount2: 11
+```
+
+## 线程调度(Thread Scheduling)
+
+## 线程陷阱(Thread Pitfalls)
