@@ -23,12 +23,12 @@ C\C++的多线程编程常用库. (虽然C11有线程库，but还是有很多老
 ## 线程创建和销毁(Thread Creation and Termination)
 
 ```C
-    int pthread_create(pthread_t * thread, 
-                       const pthread_attr_t * attr,
-                       void * (*start_routine)(void *), 
-                       void *arg);
-	// retval - Return value of thread.
-	void pthread_exit(void *retval);
+int pthread_create(pthread_t * thread, 
+                   const pthread_attr_t * attr,
+                   void * (*start_routine)(void *), 
+                   void *arg);
+// retval - Return value of thread.
+void pthread_exit(void *retval);
 ```
 
 ## 线程同步(Thread Synchronization)
@@ -41,11 +41,13 @@ C\C++的多线程编程常用库. (虽然C11有线程库，but还是有很多老
 
 ### Mutex
 
+mutex为了防止不同线程竞争相同内存区域的数据。mutex只能用于单个进程中的线程，不能像信号量一样在进程之间工作。
+
 ```c
-   pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
-   pthread_mutex_lock( &mutex1 );
-   counter++;
-   pthread_mutex_unlock( &mutex1 );
+pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_lock( &mutex1 );
+counter++;
+pthread_mutex_unlock( &mutex1 );
 ```
 
 ### Join
@@ -59,6 +61,7 @@ pthread_join( thread_id, NULL);
 ### 条件变量(Wait&Signal)
 
 ```C
+//有趣的例子
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -74,7 +77,7 @@ int  count = 0;
 #define COUNT_HALT1  3
 #define COUNT_HALT2  6
 
-main()
+int main()
 {
    pthread_t thread1, thread2;
 
@@ -144,3 +147,21 @@ Counter value functionCount2: 11
 ## 线程调度(Thread Scheduling)
 
 ## 线程陷阱(Thread Pitfalls)
+
+## 信号量(Semaphore)
+
+信号量的机制类似于mutex，但可以在进程(线程)间使用. POSIX 标准使用<semaphore.h> .
+
+```
+int sem_init (sem_t *sem, int pshared, unsigned int value);
+int sem_destroy(sem_t * sem);
+// 给信号量加1
+int sem_post(sem_t * sem);
+// 等待一个大于0的信号量(阻塞)，给信号量减1
+int sem_wait(sem_t * sem);
+// sem_wait的非阻塞版本
+int sem_trywait(sem_t * sem);
+// 参数sval：信号量计数值
+int sem_getvalue(sem_t * sem, int * sval);
+```
+
