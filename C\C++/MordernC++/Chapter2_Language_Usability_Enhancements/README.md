@@ -69,6 +69,6 @@
        std::cout << "type z == type x" << std::endl;
    ```
 
-2. auto
+2. auto(编译期解决还是运行时判断？)
 
-3. 
+3. 尾返回类型推导
