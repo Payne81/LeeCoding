@@ -1,5 +1,6 @@
 #!/bin/bash
 #folder="./test"
+
 i=0
 function readfile ()
 {
