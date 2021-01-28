@@ -1,0 +1,47 @@
+cmake_minimum_required(VERSION 3.0.0)
+project(testeipc)
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread -lm")
+
+# Create a sources variable with a link to all cpp files to compile
+set(SOURCES
+    src/cjson.c
+    src/dlist.c
+    #src/easyipc_backtrace.c
+    src/easyipc_conf_support.c
+    #src/easyipc_console.c
+    src/easyipc_support.c
+    #test/client.c
+    #test/server.c
+)
+set(EXESERVER
+    test/server.c
+)
+set(EXECLIENT
+    test/client.c
+)
+
+add_executable(server 
+    ${SOURCES}
+    ${EXESERVER}
+)
+target_include_directories(server
+    PRIVATE 
+        ${PROJECT_SOURCE_DIR}/include
+        ${PROJECT_SOURCE_DIR}/exp_inc
+)
+target_link_libraries(server m)
+# Add an executable with the above sources
+add_executable(client 
+    ${SOURCES}
+    ${EXECLIENT}
+)
+
+# Set the directories that should be included in the build command for this target
+# when running g++ these will be included as -I/directory/path/
+target_include_directories(client
+    PRIVATE 
+        ${PROJECT_SOURCE_DIR}/include
+        ${PROJECT_SOURCE_DIR}/exp_inc
+)
+target_link_libraries(client m)
