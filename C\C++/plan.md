@@ -9,7 +9,7 @@
    5. STL
 3. 技术栈
    1. Redis(Rust实现mini-Redis)
-   2. HTTP/HTTPS、TCP、（可靠）UDP等协议及网络变成
+   2. HTTP/HTTPS、TCP、（可靠）UDP等协议及网络编程
    3. Linux高性能服务器编程
 4. 算法题🅰
 
