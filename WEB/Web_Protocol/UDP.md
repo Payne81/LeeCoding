@@ -22,4 +22,6 @@
 
 <img src="file:///home/payne/.config/marktext/images/2021-02-16-23-02-43-image.png" title="" alt="" data-align="center">
 
+长度: 表示数据报长度，包括报头。
 
+校验值: 检查数据是否损坏。
