@@ -60,6 +60,8 @@ pthread_join( thread_id, NULL);
 
 ### 条件变量(Wait&Signal)
 
+一般和mutex搭配使用
+
 ```C
 //有趣的例子
 #include <stdio.h>
@@ -164,4 +166,3 @@ int sem_trywait(sem_t * sem);
 // 参数sval：信号量计数值
 int sem_getvalue(sem_t * sem, int * sval);
 ```
-
