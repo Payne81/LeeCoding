@@ -1,9 +1,13 @@
 ## Rust
 
-参考书目: [The Little Book of Rust Books](https://lborb.github.io/book/title-page.html) (基本包括官方以及非官方的文档，but English).
+参考书目: 
 
- [Tokio 中文文档](https://github.com/dslchd/tokio-cn-doc) 
+- [The Little Book of Rust Books](https://lborb.github.io/book/title-page.html) (基本包括官方以及非官方的文档，but English).
 
-[(Rust web 学习路线)Talent Plan | PingCAP University](https://university.pingcap.com/talent-plan/rust-programming/)
+-  [Tokio 中文文档](https://github.com/dslchd/tokio-cn-doc) 
+
+- [actix-web3中文文档](https://github.com/dslchd/actix-web3-CN-doc)
+
+- [(Rust web 学习路线)Talent Plan | PingCAP University](https://university.pingcap.com/talent-plan/rust-programming/)
 
 
