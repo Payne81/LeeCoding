@@ -1,8 +1,8 @@
 # POSIX Thread
 
-C\C++的多线程编程常用库. (虽然C11有线程库，but还是有很多老古董不用🤡，C++11后有thread库).
+C\C++的多线程编程常用库. （好像实际只有C在用） (虽然C11有线程库，but还是有很多老古董不用🤡，C++11后有thread库).
 
-本文档参考https://www.cs.cmu.edu/afs/cs/academic/class/15492-f07/www/pthreads.html.
+本文档参考[Linux Tutorial: POSIX Threads](https://www.cs.cmu.edu/afs/cs/academic/class/15492-f07/www/pthreads.html).
 
 ## 基础
 
