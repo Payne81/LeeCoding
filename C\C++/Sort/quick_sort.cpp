@@ -2,13 +2,17 @@
  * @Author: Payne
  * @Date: 2021-03-12 09:06:56
  * @LastEditors: Payne
- * @LastEditTime: 2021-03-12 18:05:39
+ * @LastEditTime: 2021-03-13 09:08:36
  * @Description: quick_sort
  */
 #include <iostream>
 
 using namespace std;
 
+/**
+ * 稳定性: 稳定
+ * 时间复杂度： O(nlogn)[平均]，O(n^2)[最坏]
+ */
 void Qsort(int arr[], int low, int high){
     if(low >= high)
         return;
