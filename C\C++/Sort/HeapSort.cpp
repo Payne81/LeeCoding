@@ -5,14 +5,25 @@
  * @LastEditTime: 2021-03-13 14:48:00
  * @Description: 
  */
+#include <iostream>
+#include <vector>
+#include <queue>
 
-
+using namespace std;
 /**
  * 堆排序: 稳定
  * 时间复杂度: O(nlogn)
+ * 空间复杂度: 本来应该原地O(1),用priority_queue是O(n)
+ * Leetcode 24ms
  */
 void HeapSort(vector<int> &nums){
-    
+    priority_queue<int> maxheap;
+    for(int i=0; i < nums.size(); i++)
+        maxheap.push(nums[i]);
+    for(int j=nums.size()-1; j>=0; j--){
+        nums[j] = maxheap.top();
+        maxheap.pop();
+    }
 }
 
 int main(){
