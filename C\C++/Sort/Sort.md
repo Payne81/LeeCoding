@@ -8,3 +8,19 @@
 ![](https://images2018.cnblogs.com/blog/849589/201804/849589-20180402133438219-1946132192.png)
 
 重点掌握快排、堆排序和归并排序, 理解桶排序。
+
+
+
+**自己写了程序可以在Leetcode题 [912. 排序数组](https://leetcode-cn.com/problems/sort-an-array/)中测试** ,此题目题解还有许多奇怪的排序解法。
+
+## 快速排序
+
+Leetcode题: **[剑指 Offer 40. 最小的k个数](https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/)**
+
+## 归并排序
+
+掌握两种实现(迭代和递归)
+
+## 堆排序
+
+C++有个语法糖:优先队列(priority_queue, 可以是最大最小值堆)，建议写不出来的时候用(cheat)

@@ -2,7 +2,7 @@
  * @Author: Payne
  * @Date: 2021-03-13 14:38:42
  * @LastEditors: Payne
- * @LastEditTime: 2021-03-13 14:56:42
+ * @LastEditTime: 2021-03-13 15:35:35
  * @Description: 归并排序
  */
 
@@ -14,8 +14,8 @@ void MergeSort(int arr[], int low, int high){
     
 }
 
-vector<int> Merge(int left, vector<int> right){
-
+void Merge(vector<int> &nums, int left, int mid, int right){
+    
 }
 
 int main(){
