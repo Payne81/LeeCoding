@@ -11,7 +11,7 @@
 using namespace std;
 
 /**
- * 稳定性: 稳定
+ * 稳定性: 不稳定!!!!!
  * 时间复杂度： O(nlogn)[平均]，O(n^2)[最坏]
  */
 void Qsort(vector<int>& arr, int low, int high){
