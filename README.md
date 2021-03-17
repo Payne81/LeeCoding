@@ -8,6 +8,8 @@
 
 - [Google 开源项目风格指南 ](https://zh-google-styleguide.readthedocs.io/en/latest/)
 
+自己整理面经太慢了，不如看别人整理的[interview](https://interview.huihut.com/#/)
+
 ## Rust
 
 参考书目: 
